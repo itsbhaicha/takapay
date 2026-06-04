@@ -64,38 +64,59 @@ An integrated listener workflow designed to parse incoming payment confirmation 
 The platform is structured using the standard CodeIgniter 4 framework layout to maintain optimal performance, secure routing, and clean separation of concerns:
 
 ```text
-taka-pay/
+takapay/
+├── .env
+├── .htaccess
+├── index.php
+├── spark
+├── googlea7dd34490fb2a9b8.html
+│
+├── .well-known/
+│   ├── acme-challenge/
+│   └── pki-validation/
+│
 ├── app/
+│   ├── Commands/
 │   ├── Config/
-│   │   ├── App.php                  # Global application configuration settings
-│   │   ├── Database.php             # Database credentials and transaction connection pooling
-│   │   ├── Filters.php              # Auth filters & API security middleware
-│   │   └── Routes.php               # Unified routing table for Checkout and Admin endpoints
 │   ├── Controllers/
-│   │   ├── Admin/                   # System-wide super administrative controller logic
-│   │   ├── Api/
-│   │   │   └── V1/
-│   │   │       ├── Callback.php     # Handlers for incoming Android SMS push events
-│   │   │       └── Checkout.php     # Endpoint processing engine for checkout creation
-│   │   ├── Merchant/                # Merchant portal account control logic
-│   │   └── Home.php                 # Core entry point and gateway redirection handler
+│   ├── Database/
+│   │   ├── Migrations/
+│   │   └── Seeds/
+│   ├── Filters/
+│   ├── Helpers/
+│   ├── Language/
+│   ├── Libraries/
 │   ├── Models/
-│   │   ├── MerchantModel.php        # Manage account balances, limits, and profiles
-│   │   ├── TransactionModel.php     # Handle status updates, amounts, and transaction IDs
-│   │   └── WebhookModel.php         # Logging delivery responses and dispatch payloads
-│   └── Views/
-│       ├── admin/                   # Blade-like view components for core administrators
-│       ├── checkout/                # Responsive payment templates and timer interfaces
-│       └── merchant/                # Tailwind CSS dashboard layouts for business owners
+│   ├── Modules/
+│   ├── Views/
+│   ├── system/
+│   ├── .htaccess
+│   └── index.html
+│
+├── routes/
+│   └── web.php
+│
 ├── public/
 │   ├── assets/
-│   │   ├── css/                     # Compiled Tailwind utility styling files
-│   │   ├── js/                      # Frontend validation logic and active timers
-│   │   └── images/                  # Core branding materials and payment channel icons
-│   └── index.php                    # System entry point
-├── writable/                        # Session buffers, runtime logs, and cache targets
-├── .env.example                     # Environment configuration base template
-└── spark                            # CodeIgniter CLI commands panel
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── images/
+│   │   ├── fonts/
+│   │   └── vendor/
+│   │
+│   └── uploads/
+│
+├── writable/
+│   ├── backups/
+│   ├── cache/
+│   ├── debugbar/
+│   ├── logs/
+│   ├── session/
+│   ├── uploads/
+│   ├── license_status.json
+│   └── .htaccess
+│
+└── cgi-bin/
 ```
 
 ---
@@ -107,7 +128,7 @@ Integrate Taka Pay into your billing or checkout workflow using standard JSON RE
 ### 1. Create Checkout Session
 Initiate a transaction session. Securely generate a dynamic checkout URL to redirect your customers.
 
-**Endpoint:** `POST /api/v1/checkout/create`
+**Endpoint:** `POST secure-pay.takapay.shop`
 
 #### Request Payload
 ```json
