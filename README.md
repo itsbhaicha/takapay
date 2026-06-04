@@ -1,165 +1,192 @@
-<div align="center">
-  <a href="https://takapay.shop">
-    <img src="https://i.postimg.cc/rpH8d33H/takapay.png" alt="Taka Pay Logo" width="250" />
-  </a>
+# Taka Pay - Commercial Automated Payment Gateway Platform
 
-  # Taka Pay
-  **Enterprise-Grade Automated Payment Gateway Platform**
+<p align="center">
+  <img src="https://i.postimg.cc/rpH8d33H/takapay.png" alt="Taka Pay Banner" width="100%" />
+</p>
 
-  [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg?style=flat-square)](#)
-  [![Platform: Android Automation](https://img.shields.io/badge/Platform-Android_Automation-blue.svg?style=flat-square)](#)
-  [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg?style=flat-square)](#)
+<p align="center">
+  <strong>An enterprise-grade, high-performance payment orchestration platform designed for local digital wallets in Bangladesh.</strong>
+</p>
 
-  🌐 **Official Website:** [https://takapay.shop](https://takapay.shop)
-</div>
+<p align="center">
+  <img src="https://img.shields.io/badge/Stars%20Goal-1%2C000%20to%20Open%20Source-6f42c1?style=for-the-badge&logo=github" alt="Stars Goal" />
+  <img src="https://img.shields.io/badge/Framework-CodeIgniter%204.x-F27420?style=for-the-badge&logo=codeigniter" alt="CodeIgniter 4" />
+  <img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="Proprietary License" />
+</p>
 
----
-
-## 📖 Executive Overview
-
-**Taka Pay** is a next-generation, commercial automated payment gateway platform designed to process transactions with absolute precision, security, and speed. Built on robust Android automation overlays, Taka Pay bridges the gap between merchant platforms and local mobile financial services, providing an ultra-reliable, concurrent-processing financial pipeline. 
-
-Designed for high-volume enterprise environments, Taka Pay guarantees minimal latency, secure session management, and cryptographic payload verification.
+<p align="center">
+  🎯 <strong>Milestone Alert:</strong> We're Going Open Source at 1,000 Stars! Star this repository, share it with your developer community, and help us make open-source automated fintech accessible to everyone in Bangladesh.
+</p>
 
 ---
 
-## ⚡ System Capabilities
+## 📌 Platform Overview
 
-### 1. Merchant Dashboard
-A highly responsive, analytics-driven portal tailored for registered merchants to manage their financial inflows.
-*   **Real-time Analytics:** Track total volume, active transactions, and conversion rates.
-*   **API Management:** Securely generate and rotate API Public Keys and Secret Keys.
-*   **Webhook Configuration:** Dynamically configure and test endpoint URLs for instant transaction callbacks.
-*   **Ledger & Reporting:** Exportable transaction logs with deep-dive filters for accounting reconciliation.
+**Taka Pay** is a next-generation, self-hosted commercial automated payment gateway utility engineered on top of the robust **CodeIgniter 4 MVC framework**. Optimized for scaling digital platforms, online shops, and enterprise SaaS systems, Taka Pay bridges the gap between manual mobile financial service (MFS) accounts and automated billing. 
 
-### 2. Super Admin Command Center
-The central nervous system of the Taka Pay platform, designed for operators to maintain ecosystem integrity.
-*   **Automation Node Management:** Monitor the health, latency, and operational status of Android automation overlay relays.
-*   **Merchant Lifecycle Management:** Approve, suspend, or audit merchant accounts with granular access controls.
-*   **System Diagnostics:** Real-time logging of API throughput, webhook dispatch success rates, and potential bottleneck alerts.
-*   **Revenue Control:** Manage platform commission structures, payout thresholds, and settlement tracking.
-
-### 3. Optimized Mobile Checkout UI
-A frictionless, mobile-first payment interface engineered for maximum conversion.
-*   **Adaptive Overlay:** Clean, branding-integrated UI that adapts flawlessly to any screen size.
-*   **Dynamic Session Tokenization:** Time-limited, encrypted checkout links to prevent replay attacks.
-*   **Real-time Status Sync:** Asynchronous polling ensures the user interface updates the exact moment the automation node confirms the transaction.
+By leveraging low-latency Android metadata and notification-based automation overlays, Taka Pay automates incoming transaction verifications for **bKash, Nagad, and Rocket** merchant and personal configurations in real-time, matching the operational capability of modern local payment aggregators.
 
 ---
 
-## 🚀 API Quick Integration Guide
+## 🖥️ Platform Architecture & GUI Modules
 
-Taka Pay provides a clean, RESTful API for rapid integration into any merchant platform. All requests must be authenticated using a `Bearer` token (your Merchant API Key).
+Taka Pay is split into four decoupled user interfaces and services to streamline payment workflows:
 
-### Step 1: Initialize Checkout Session
+### 1. Merchant Control Panel (Tailwind CSS)
+A beautiful, responsive administrative interface built specifically for merchants to manage operations without visual clutter.
+*   **Performance Dashboards:** Live tracking of daily volume, success rates, and average settlement times.
+*   **API Management:** Self-service production and sandbox credential generation.
+*   **Transaction Ledgers:** Comprehensive filtering options by Transaction ID, sender number, payment method, and operational status.
+*   **Webhook Logs:** Real-time delivery tracking with response code captures to inspect failed endpoint pings.
 
-To create a new payment session, send a `POST` request to the core API handler.
+### 2. Super Admin Control Center
+A control tower designed for server administrators to coordinate global platform behavior.
+*   **Routing Protocols:** Automatically distribute incoming traffic between secondary or fallback merchant wallets during peak times.
+*   **Fee Adjustments:** Configure customizable percentage-based or flat rates for individual merchants.
+*   **System Analytics:** Monitor live transaction queues, background workers, and overall database transaction logs.
 
-**Endpoint:** `POST https://api.takapay.shop/v1/checkout/create`  
-**Headers:**
-```http
-Authorization: Bearer YOUR_MERCHANT_API_KEY
-Content-Type: application/json
+### 3. Mobile-Responsive Checkout UI
+A universal, distraction-free transaction screen optimized for mobile screens and low-bandwidth connections.
+*   **Dynamic Instructions:** Tailored payment walk-throughs for Cash-Out, Send Money, or Merchant Pay modes based on the wallet types.
+*   **Countdown Timers:** Expiration safeguards to avoid outdated, orphaned payment attempts.
+*   **Live AJAX Validation:** Immediate verification feedback as soon as a user clicks the "Verify" button.
 
-Request Payload:
+### 4. Tasker & Android SMS Relay Interface
+An integrated listener workflow designed to parse incoming payment confirmation SMS strings into transaction objects.
+*   **Pattern Matching:** Advanced regular expressions configured for major telecom providers and MFS formats.
+*   **Instant Sync:** Secure metadata delivery via authorized POST payloads directly to the gateway core.
+*   **Fallback Handling:** Support for manual reconciliation requests if network delays interrupt background push tasks.
 
+---
+
+## 📂 CodeIgniter 4 Directory Map
+
+The platform is structured using the standard CodeIgniter 4 framework layout to maintain optimal performance, secure routing, and clean separation of concerns:
+
+```text
+taka-pay/
+├── app/
+│   ├── Config/
+│   │   ├── App.php                  # Global application configuration settings
+│   │   ├── Database.php             # Database credentials and transaction connection pooling
+│   │   ├── Filters.php              # Auth filters & API security middleware
+│   │   └── Routes.php               # Unified routing table for Checkout and Admin endpoints
+│   ├── Controllers/
+│   │   ├── Admin/                   # System-wide super administrative controller logic
+│   │   ├── Api/
+│   │   │   └── V1/
+│   │   │       ├── Callback.php     # Handlers for incoming Android SMS push events
+│   │   │       └── Checkout.php     # Endpoint processing engine for checkout creation
+│   │   ├── Merchant/                # Merchant portal account control logic
+│   │   └── Home.php                 # Core entry point and gateway redirection handler
+│   ├── Models/
+│   │   ├── MerchantModel.php        # Manage account balances, limits, and profiles
+│   │   ├── TransactionModel.php     # Handle status updates, amounts, and transaction IDs
+│   │   └── WebhookModel.php         # Logging delivery responses and dispatch payloads
+│   └── Views/
+│       ├── admin/                   # Blade-like view components for core administrators
+│       ├── checkout/                # Responsive payment templates and timer interfaces
+│       └── merchant/                # Tailwind CSS dashboard layouts for business owners
+├── public/
+│   ├── assets/
+│   │   ├── css/                     # Compiled Tailwind utility styling files
+│   │   ├── js/                      # Frontend validation logic and active timers
+│   │   └── images/                  # Core branding materials and payment channel icons
+│   └── index.php                    # System entry point
+├── writable/                        # Session buffers, runtime logs, and cache targets
+├── .env.example                     # Environment configuration base template
+└── spark                            # CodeIgniter CLI commands panel
+```
+
+---
+
+## 🔌 Merchant API Documentation
+
+Integrate Taka Pay into your billing or checkout workflow using standard JSON REST requests.
+
+### 1. Create Checkout Session
+Initiate a transaction session. Securely generate a dynamic checkout URL to redirect your customers.
+
+**Endpoint:** `POST /api/v1/checkout/create`
+
+#### Request Payload
+```json
 {
-  "order_id": "ORD-102938475",
-  "amount": 2500.00,
-  "customer_email": "customer@example.com",
+  "api_key": "tp_live_9f82a177b83d4411802931a1",
+  "amount": 1500.00,
+  "currency": "BDT",
+  "order_id": "ORDER-99281A",
+  "customer_name": "Rahat Ahmed",
+  "customer_email": "rahat@domain.com",
   "customer_phone": "01700000000",
-  "success_url": "https://merchant.com/payment/success",
-  "cancel_url": "https://merchant.com/payment/cancel"
+  "success_url": "https://merchant.com/checkout/success",
+  "fail_url": "https://merchant.com/checkout/failed",
+  "cancel_url": "https://merchant.com/checkout/cancelled"
 }
+```
 
-Response Payload (201 Created):
-
+#### Response Payload
+```json
 {
   "status": "success",
-  "message": "Checkout session initialized successfully.",
-  "data": {
-    "payment_token": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
-    "checkout_url": "https://checkout.takapay.shop/pay/?token=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
-    "expires_in": 900
-  }
+  "message": "Checkout session successfully created.",
+  "payment_id": "TXN_SESSION_83921008271",
+  "checkout_url": "https://gateway.takapay.com/checkout/pay/TXN_SESSION_83921008271",
+  "amount": 1500.00,
+  "created_at": "2026-06-04 06:06:00"
 }
+```
 
-Step 2: Webhook Verification (HMAC-SHA256)
+---
 
-Once a transaction is successfully processed by the Android automation relay,
-Taka Pay will dispatch an asynchronous server-to-server POST request to your
-configured Webhook URL.
+### 2. Secure Webhook Signature Verification
+Once a user confirms their transaction, Taka Pay transmits a cryptographically signed POST payload directly to your registered server endpoint. 
 
-To guarantee the authenticity of the webhook, you must verify the
-X-TakaPay-Signature header using your Merchant Secret Key.
-
-Webhook Headers:
-
-Content-Type: application/json
-X-TakaPay-Signature: 8f4e2b...[HMAC_SHA256_HASH]...c7d1a9
-
-Webhook Payload:
-
+#### Webhook Request Payload
+```json
 {
-  "event": "payment.completed",
-  "payment_token": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
-  "transaction_id": "TXN-9988776655",
-  "order_id": "ORD-102938475",
-  "amount": 2500.00,
-  "currency": "BDT",
+  "event": "transaction.completed",
+  "payment_id": "TXN_SESSION_83921008271",
+  "order_id": "ORDER-99281A",
+  "amount": 1500.00,
+  "charge_applied": 15.00,
+  "net_settled": 1485.00,
+  "payment_method": "bkash",
+  "sender_number": "017XXXXXXXX",
+  "transaction_id": "ALJ8HDH762",
   "status": "COMPLETED",
-  "timestamp": 1717477140
+  "timestamp": "2026-06-04 06:07:15"
 }
+```
 
-Note: Always compute the HMAC-SHA256 hash of the raw payload string using your
-Secret Key and compare it against the provided X-TakaPay-Signature to prevent
-spoofing.
+#### Security Implementation Schema
+To ensure integrity and prevent replay attacks, every payload includes a custom security header generated using your secret merchant configuration:
 
-🗂️ Directory & Repository Structure
+```text
+Header Key: X-TakaPay-Signature
+Algorithm: HMAC-SHA256
+Signature Logic: HashHMAC("sha256", raw_json_payload, merchant_api_secret)
+```
 
-takapay-enterprise-core/
-├── api/
-│   ├── v1/
-│   │   ├── checkout/         # Session initialization endpoints
-│   │   ├── webhook/          # Dispatcher logic and retry queues
-│   │   └── verification/     # Internal node verification relays
-├── core/
-│   ├── auth/                 # API Key authentication & rate limiting
-│   ├── security/             # Cryptography and HMAC signing engine
-│   └── database/             # Relational mapping and connection pooling
-├── automation-relay/         # Sync controllers for Android overlay nodes
-├── public/
-│   ├── assets/               # CSS, SVG vectors, and raw images
-│   ├── checkout/             # Front-end mobile-first checkout UI
-│   └── dashboard/            # Merchant interface assets
-├── admin/
-│   ├── controllers/          # Super Admin dashboard logic
-│   └── views/                # Operator interface layouts
-├── logs/                     # System diagnostics and transaction logs
-└── README.md                 # Project documentation
+**Verification Steps for Integration:**
+1. Intercept the incoming raw string response payload *before* any framework-level JSON parsing occurs.
+2. Calculate the local payload signature using the raw body payload combined with your merchant private key.
+3. Use a time-constant string comparison function to verify that your calculated signature matches the value inside the `X-TakaPay-Signature` header.
 
-⚖️ Legal & Proprietary Notice
+---
 
-COPYRIGHT © 2026 Taka Pay. All Rights Reserved.
+## 📜 Intellectual Property & Licensing Disclaimer
 
-STRICT PROPRIETARY LICENSE
+**Copyright © 2026 Taka Pay Team. All Rights Reserved.**
 
-This software, including all source files, documentation, architecture designs,
-API layouts, and visual assets (collectively, the "Software"), is the exclusive,
-proprietary property of Taka Pay (https://takapay.shop).
+This software platform is developed and maintained under a strict proprietary license. Any unauthorized reproduction, distribution, reverse engineering, decompilation, translation, or alteration of code structures, visual designs, database schemas, or automation workflows constitutes copyright infringement and will be prosecuted under applicable digital asset protection laws.
 
-1.  NO UNAUTHORIZED USE: You are strictly prohibited from copying, modifying,
-    merging, publishing, distributing, sublicensing, or selling copies of the
-    Software, in whole or in part, without explicit, written, and legally
-    binding authorization from the intellectual property owners of Taka Pay.
-2.  NO REVERSE ENGINEERING: Decompiling, reverse engineering, disassembling, or
-    otherwise attempting to derive the source code, automation methodologies, or
-    cryptographic implementations of this platform is expressly forbidden.
-3.  CONFIDENTIALITY: This repository and its contents are strictly confidential
-    and constitute trade secrets. Unauthorized leakage, sharing, or public
-    display of this architecture will result in immediate legal action under
-    applicable national and international intellectual property laws.
+* **Usage Limitations:** Access to system files and implementation templates is granted solely to registered enterprise operators under active agreement contracts.
+* **Code Modification:** Custom layout styling modification is allowed solely within the parameters of designated user configurations, provided copyright ownership markers remain completely intact within dynamic views.
+* **Open Source Transition:** As stated, core components of this system are scheduled to transition into public licensing modes upon reaching the specified milestone target of 1,000 GitHub Stars.
 
-By viewing, downloading, or interacting with this repository in any way, you
-acknowledge and agree to be bound by these strict proprietary terms.
+---
 
+<p align="center">
+  <sub>Taka Pay is designed to support development, research, and payment integration tasks for merchants in Bangladesh.</sub>
+</p>
